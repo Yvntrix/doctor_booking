@@ -1,4 +1,4 @@
-import 'package:doctor_booking/app.dart';
+import 'package:doctor_booking/core/app/app.dart';
 import 'package:doctor_booking/core/services/hive_service.dart';
 import 'package:flutter/material.dart';
 
