@@ -1,6 +1,7 @@
 import 'package:doctor_booking/core/router/app_router.dart';
 import 'package:doctor_booking/domain/repositories/doctor_repository.dart';
 import 'package:doctor_booking/features/patient/doctor_list/cubit/doctor_list_cubit.dart';
+import 'package:doctor_booking/utils/ui/profile_pic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,10 +46,7 @@ class DoctorListView extends StatelessWidget {
             itemBuilder: (context, index) {
               final doctor = state.doctors[index];
               return ListTile(
-                leading: const CircleAvatar(
-                  radius: 24,
-                  child: Icon(Icons.person, size: 24),
-                ),
+                leading: ProfilePic(size: 24, initials: doctor.initials),
                 title: Text(
                   doctor.name,
                   style: const TextStyle(

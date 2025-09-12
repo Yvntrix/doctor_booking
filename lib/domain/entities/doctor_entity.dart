@@ -1,4 +1,4 @@
-import 'package:intl/intl.dart';
+import 'package:doctor_booking/utils/string_utils.dart';
 
 class Doctor {
   Doctor({
@@ -12,6 +12,8 @@ class Doctor {
   final String name;
   final String specialty;
   final List<DoctorAvailability> availability;
+
+  String get initials => name.initial;
 }
 
 class DoctorAvailability {
@@ -33,12 +35,7 @@ class DoctorSlot {
   final String start;
   final String end;
 
-  String get startTime => _formatTime(start);
+  String get startTime => start.formatTime();
 
-  String get endTime => _formatTime(end);
-
-  static String _formatTime(String time) {
-    final dateTime = DateFormat.Hm().parse(time);
-    return DateFormat.jm().format(dateTime);
-  }
+  String get endTime => end.formatTime();
 }
