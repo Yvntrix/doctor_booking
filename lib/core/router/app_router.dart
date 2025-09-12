@@ -30,7 +30,9 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: 'doctor/:id',
-              builder: (context, state) => const DoctorDetailPage(),
+              builder: (context, state) => DoctorDetailPage(
+                id: state.pathParameters['id']!,
+              ),
             ),
             GoRoute(
               path: 'my-bookings',

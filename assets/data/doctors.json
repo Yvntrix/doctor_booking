@@ -1,7 +1,7 @@
 [
   {
     "id": "d1",
-    "name": "Dr. Ana Rivera",
+    "name": "Ana Rivera",
     "specialty": "Cardiology",
     "availability": [
       {
@@ -17,7 +17,7 @@
   },
   {
     "id": "d2",
-    "name": "Dr. Marcus Lee",
+    "name": "Marcus Lee",
     "specialty": "Dermatology",
     "availability": [
       {
@@ -32,7 +32,7 @@
   },
   {
     "id": "d3",
-    "name": "Dr. Priya Sharma",
+    "name": "Priya Sharma",
     "specialty": "Pediatrics",
     "availability": [
       { "day": "Monday", "slots": [{ "start": "08:00", "end": "12:00" }] },
@@ -42,7 +42,7 @@
   },
   {
     "id": "d4",
-    "name": "Dr. Samuel Okoye",
+    "name": "Samuel Okoye",
     "specialty": "Orthopedics",
     "availability": [
       { "day": "Wednesday", "slots": [{ "start": "08:30", "end": "11:30" }] },
@@ -51,7 +51,7 @@
   },
   {
     "id": "d5",
-    "name": "Dr. Elena Petrov",
+    "name": "Elena Petrov",
     "specialty": "General Practice",
     "availability": [
       {
