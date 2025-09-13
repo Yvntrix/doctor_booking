@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class Booking {
   Booking({
@@ -7,6 +6,8 @@ class Booking {
     required this.doctorId,
     required this.patientName,
     required this.date,
+    required this.slotStart,
+    required this.slotEnd,
     required this.reason,
     this.status = BookingStatus.pending,
   });
@@ -15,12 +16,10 @@ class Booking {
   final String doctorId;
   final String patientName;
   final DateTime date;
+  final String slotStart;
+  final String slotEnd;
   final String reason;
   final BookingStatus status;
-
-  String get formattedDate => DateFormat.yMMMMd().format(date);
-
-  String get formattedTime => DateFormat.jm().format(date);
 }
 
 enum BookingStatus { pending, approved, rejected }

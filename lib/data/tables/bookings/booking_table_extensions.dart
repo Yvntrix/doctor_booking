@@ -7,6 +7,8 @@ extension BookingTableX on BookingTable {
     doctorId: doctorId,
     patientName: patientName,
     date: date,
+    slotStart: slotStart,
+    slotEnd: slotEnd,
     reason: reason,
     status: status.toDomain(),
   );

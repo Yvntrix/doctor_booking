@@ -1,3 +1,4 @@
+import 'package:doctor_booking/core/router/app_router.dart';
 import 'package:doctor_booking/domain/entities/doctor_entity.dart';
 import 'package:doctor_booking/domain/repositories/doctor_repository.dart';
 import 'package:doctor_booking/features/patient/doctor_detail/cubit/doctor_detail_cubit.dart';
@@ -57,7 +58,7 @@ class DoctorDetailView extends StatelessWidget {
               children: [
                 _header(doctor),
                 _availability(doctor.availability),
-                _book(),
+                _book(context, doctor.id),
               ],
             ),
           );
@@ -105,16 +106,16 @@ class DoctorDetailView extends StatelessWidget {
     ],
   );
 
-  Widget _book() => Center(
-    child: ElevatedButton.icon(
-      onPressed: () {
-        // TODO: Navigate to booking form
-      },
-      icon: const Icon(Icons.calendar_today),
-      label: const Text('Book Appointment'),
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-        textStyle: const TextStyle(fontSize: 18),
+  Widget _book(BuildContext context, String id) => SafeArea(
+    child: Center(
+      child: ElevatedButton.icon(
+        onPressed: () => context.goToBookingForm(id),
+        icon: const Icon(Icons.calendar_today),
+        label: const Text('Book Appointment'),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+          textStyle: const TextStyle(fontSize: 18),
+        ),
       ),
     ),
   );

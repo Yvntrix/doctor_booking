@@ -3,8 +3,8 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:doctor_booking/core/database/tables/booking_table.dart';
-import 'package:doctor_booking/core/database/tables/doctor_table.dart';
+import 'package:doctor_booking/data/tables/bookings/booking_table.dart';
+import 'package:doctor_booking/data/tables/doctors/doctor_table.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {

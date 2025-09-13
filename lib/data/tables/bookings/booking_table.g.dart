@@ -21,17 +21,19 @@ class BookingTableAdapter extends TypeAdapter<BookingTable> {
       doctorId: fields[1] as String,
       patientName: fields[2] as String,
       date: fields[3] as DateTime,
-      reason: fields[4] as String,
-      status: fields[5] == null
+      slotStart: fields[4] as String,
+      slotEnd: fields[5] as String,
+      reason: fields[6] as String,
+      status: fields[7] == null
           ? BookingTableStatus.pending
-          : fields[5] as BookingTableStatus,
+          : fields[7] as BookingTableStatus,
     );
   }
 
   @override
   void write(BinaryWriter writer, BookingTable obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,8 +43,12 @@ class BookingTableAdapter extends TypeAdapter<BookingTable> {
       ..writeByte(3)
       ..write(obj.date)
       ..writeByte(4)
-      ..write(obj.reason)
+      ..write(obj.slotStart)
       ..writeByte(5)
+      ..write(obj.slotEnd)
+      ..writeByte(6)
+      ..write(obj.reason)
+      ..writeByte(7)
       ..write(obj.status);
   }
 

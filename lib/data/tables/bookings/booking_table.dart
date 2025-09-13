@@ -19,10 +19,11 @@ class BookingTable extends HiveObject {
     required this.doctorId,
     required this.patientName,
     required this.date,
+    required this.slotStart,
+    required this.slotEnd,
     required this.reason,
     this.status = BookingTableStatus.pending,
   });
-
   @HiveField(0)
   final String id;
 
@@ -36,8 +37,14 @@ class BookingTable extends HiveObject {
   final DateTime date;
 
   @HiveField(4)
-  final String reason;
+  final String slotStart;
 
   @HiveField(5)
+  final String slotEnd;
+
+  @HiveField(6)
+  final String reason;
+
+  @HiveField(7)
   final BookingTableStatus status;
 }

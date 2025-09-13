@@ -8,6 +8,8 @@ abstract class BookingRepository {
     required String doctorId,
     required String patientName,
     required DateTime date,
+    required String slotStart,
+    required String slotEnd,
     required String reason,
   });
 

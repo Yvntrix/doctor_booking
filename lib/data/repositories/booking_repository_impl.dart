@@ -41,15 +41,27 @@ class BookingRepositoryImpl implements BookingRepository {
     required String doctorId,
     required String patientName,
     required DateTime date,
+    required String slotStart,
+    required String slotEnd,
     required String reason,
   }) async {
     try {
+      final bookings = _getBookingsForDoctorAndDate(doctorId, date, slotStart: slotStart, slotEnd: slotEnd);
+
+      final isTaken = bookings.isNotEmpty;
+
+      if (isTaken) {
+        throw Exception('This slot is already booked.');
+      }
+
       final id = _uuid.v4();
 
       final table = BookingTable(
         id: id,
         doctorId: doctorId,
         patientName: patientName,
+        slotStart: slotStart,
+        slotEnd: slotEnd,
         date: date,
         reason: reason,
       );
@@ -74,6 +86,8 @@ class BookingRepositoryImpl implements BookingRepository {
         doctorId: existing.doctorId,
         patientName: existing.patientName,
         date: existing.date,
+        slotStart: existing.slotStart,
+        slotEnd: existing.slotEnd,
         reason: existing.reason,
         status: status.toTable(),
       );
@@ -83,5 +97,24 @@ class BookingRepositoryImpl implements BookingRepository {
     } catch (e) {
       throw RepositoryException('Failed to update booking status', e);
     }
+  }
+
+  List<Booking> _getBookingsForDoctorAndDate(
+    String doctorId,
+    DateTime date, {
+    String? slotStart,
+    String? slotEnd,
+  }) {
+    return getAllBookings()
+        .where(
+          (b) =>
+              b.doctorId == doctorId &&
+              b.date.year == date.year &&
+              b.date.month == date.month &&
+              b.date.day == date.day &&
+              (slotStart == null || b.slotStart == slotStart) &&
+              (slotEnd == null || b.slotEnd == slotEnd),
+        )
+        .toList();
   }
 }
