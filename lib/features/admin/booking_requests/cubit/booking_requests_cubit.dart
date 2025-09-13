@@ -4,30 +4,30 @@ import 'package:doctor_booking/domain/repositories/booking_repository.dart';
 import 'package:doctor_booking/utils/ui/booking_filter_bar.dart';
 import 'package:equatable/equatable.dart';
 
-part 'my_bookings_state.dart';
+part 'booking_requests_state.dart';
 
-class MyBookingsCubit extends Cubit<MyBookingsState> {
-  MyBookingsCubit(this._bookingRepository) : super(const MyBookingsState.initial()) {
-    fetchBookings();
+class BookingRequestsCubit extends Cubit<BookingRequestsState> {
+  BookingRequestsCubit(this._bookingRepository) : super(const BookingRequestsState.initial()) {
+    fetchBookingRequests();
   }
 
   final BookingRepository _bookingRepository;
 
-  Future<void> fetchBookings() async {
-    emit(state.copyWith(status: MyBookingsStatus.loading));
+  Future<void> fetchBookingRequests() async {
+    emit(state.copyWith(status: BookingRequestsStatus.loading));
     try {
       final bookings = _bookingRepository.getAllBookings();
 
       emit(
         state.copyWith(
-          status: MyBookingsStatus.success,
+          status: BookingRequestsStatus.success,
           bookings: bookings,
         ),
       );
     } on Exception catch (e) {
       emit(
         state.copyWith(
-          status: MyBookingsStatus.failure,
+          status: BookingRequestsStatus.failure,
           error: e.toString(),
         ),
       );
