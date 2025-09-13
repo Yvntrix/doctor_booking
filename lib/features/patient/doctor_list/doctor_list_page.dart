@@ -15,6 +15,12 @@ class DoctorListPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Doctor List'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.assignment),
+              onPressed: context.goToMyBookings,
+            ),
+          ],
         ),
         body: const DoctorListView(),
       ),
