@@ -31,6 +31,12 @@ extension BookingStatusX on BookingStatus {
     BookingStatus.rejected => 'Rejected', //TODO: localize
   };
 
+  IconData get icon => switch (this) {
+    BookingStatus.pending => Icons.hourglass_empty,
+    BookingStatus.approved => Icons.check_circle,
+    BookingStatus.rejected => Icons.cancel,
+  };
+
   Color get color => switch (this) {
     BookingStatus.pending => Colors.orange,
     BookingStatus.approved => Colors.green,

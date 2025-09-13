@@ -3,8 +3,7 @@ import 'package:doctor_booking/domain/entities/doctor_entity.dart';
 import 'package:doctor_booking/domain/repositories/doctor_repository.dart';
 import 'package:doctor_booking/features/patient/doctor_detail/cubit/doctor_detail_cubit.dart';
 import 'package:doctor_booking/features/patient/doctor_detail/widgets/doctor_availability_card.dart';
-import 'package:doctor_booking/utils/string_utils.dart';
-import 'package:doctor_booking/utils/ui/profile_pic.dart';
+import 'package:doctor_booking/utils/ui/doctor_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,7 +55,7 @@ class DoctorDetailView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 24,
               children: [
-                _header(doctor),
+                DoctorHeader(doctor: doctor),
                 _availability(doctor.availability),
                 _book(context, doctor.id),
               ],
@@ -68,29 +67,6 @@ class DoctorDetailView extends StatelessWidget {
       },
     );
   }
-
-  Widget _header(Doctor doctor) => Row(
-    children: [
-      ProfilePic(size: 32, initials: doctor.name.initial),
-      const SizedBox(width: 20),
-      Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              doctor.name,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              doctor.specialty,
-              style: const TextStyle(fontSize: 16, color: Colors.blueGrey),
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
 
   Widget _availability(List<DoctorAvailability> availability) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,

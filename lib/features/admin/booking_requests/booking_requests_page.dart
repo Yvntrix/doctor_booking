@@ -1,3 +1,4 @@
+import 'package:doctor_booking/core/router/app_router.dart';
 import 'package:doctor_booking/domain/repositories/booking_repository.dart';
 import 'package:doctor_booking/features/admin/booking_requests/cubit/booking_requests_cubit.dart';
 import 'package:doctor_booking/utils/ui/booking_details_card.dart';
@@ -58,7 +59,10 @@ class BookingRequestsView extends StatelessWidget {
                         final booking = state.filteredBookings[index];
                         return BookingDetailsCard(
                           booking: booking,
-                          onTap: () {},
+                          onTap: () async {
+                            await context.goToBookingDetail(booking.doctorId, booking.id);
+                            await cubit.fetchBookingRequests();
+                          },
                         );
                       },
                     ),

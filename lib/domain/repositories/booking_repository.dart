@@ -14,4 +14,6 @@ abstract class BookingRepository {
   });
 
   Future<Booking?> updateBookingStatus(String id, BookingStatus status);
+
+  Booking? getBookingById(String id);
 }

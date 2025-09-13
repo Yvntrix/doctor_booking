@@ -17,7 +17,7 @@ extension AppRouterX on BuildContext {
 
   // Admin
   void goToAdmin() => go('/admin');
-  void goToBookingDetail(String id) => push('/admin/booking/$id');
+  Future<void> goToBookingDetail(String doctorId, String bookingId) => push('/admin/booking/$doctorId/$bookingId');
 }
 
 final appRouter = GoRouter(
@@ -55,8 +55,11 @@ final appRouter = GoRouter(
           builder: (context, state) => const BookingRequestsPage(),
           routes: [
             GoRoute(
-              path: 'booking/:id',
-              builder: (context, state) => const BookingDetailPage(),
+              path: 'booking/:doctorId/:bookingId',
+              builder: (context, state) => BookingDetailPage(
+                bookingId: state.pathParameters['bookingId']!,
+                doctorId: state.pathParameters['doctorId']!,
+              ),
             ),
           ],
         ),

@@ -99,6 +99,19 @@ class BookingRepositoryImpl implements BookingRepository {
     }
   }
 
+  @override
+  Booking? getBookingById(String id) {
+    try {
+      final table = localSource.getById(id);
+
+      if (table == null) return null;
+
+      return table.toDomain();
+    } catch (e) {
+      throw RepositoryException('Failed to get booking by id', e);
+    }
+  }
+
   List<Booking> _getBookingsForDoctorAndDate(
     String doctorId,
     DateTime date, {
@@ -113,7 +126,8 @@ class BookingRepositoryImpl implements BookingRepository {
               b.date.month == date.month &&
               b.date.day == date.day &&
               (slotStart == null || b.slotStart == slotStart) &&
-              (slotEnd == null || b.slotEnd == slotEnd),
+              (slotEnd == null || b.slotEnd == slotEnd) &&
+              b.status != BookingStatus.rejected,
         )
         .toList();
   }
